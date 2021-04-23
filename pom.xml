@@ -21,9 +21,9 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <url>add_your_base_url</url>
-                        <email>add_your_email</email>
-                        <password>add_your_password</password>
+                        <url>https://st2016.inv.bg</url>
+                        <email>karamfilovs@gmail.com</email>
+                        <password>123456</password>
                         <headless>false</headless>
                         <browser>chrome</browser>
                     </systemPropertyVariables>

@@ -9,6 +9,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import pages.Defaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientAPI {
@@ -25,7 +26,7 @@ public class ClientAPI {
     }
 
 
-    public static Response getAll(){
+    public static Response getAll() {
         Response response = RestAssured.given()
                 .log().all()
                 .contentType(ContentType.JSON)
@@ -35,7 +36,7 @@ public class ClientAPI {
         return response;
     }
 
-    public static Response delete(String id){
+    public static Response delete(String id) {
         Response response = RestAssured.given()
                 .log().all()
                 .contentType(ContentType.JSON)
@@ -45,7 +46,7 @@ public class ClientAPI {
         return response;
     }
 
-    public static Response create(Client client){
+    public static Response create(Client client) {
         Response response = RestAssured.given()
                 .log().all()
                 .contentType(ContentType.JSON)
@@ -56,13 +57,13 @@ public class ClientAPI {
         return response;
     }
 
-    public static void deleteAll(){
+    public static void deleteAll() {
         //Get all clients
         Response getAllResponse = getAll();
         //Extract all client ids from the response body
-        List<String> ids = JsonPath.read(getAllResponse.body().asString(), "$..id");
+        List<Integer> ids = JsonPath.read(getAllResponse.body().asString(), "$..id");
         System.out.println("Ids for deletion found:" + ids.toString());
         //Delete all ids 1 by 1
-        ids.forEach(id -> delete(id));
+        ids.forEach(id -> delete(String.valueOf(id)));
     }
 }
